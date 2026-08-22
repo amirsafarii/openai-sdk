@@ -1,0 +1,9 @@
+<!doctype html>
+<html><head><title>Agent Runtime</title></head><body>
+<h1>Web UI متصل به Runtime</h1>
+<div id="events"></div>
+<script>
+fetch('/events').catch(()=>{});
+document.getElementById('events').innerText = 'متصل';
+</script>
+</body></html>

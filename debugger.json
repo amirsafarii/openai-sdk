@@ -1,0 +1,1 @@
+[{"id":"ezjnvti2nhf","runId":"r1","type":"run.started","turnId":"t1","data":{},"timestamp":1787398329577},{"id":"pxtvaqi482n","runId":"r1","type":"tool.started","turnId":"t1","data":{"toolName":"exec"},"timestamp":1787398329577},{"id":"vq7lucef678","runId":"r1","type":"tool.completed","turnId":"t1","data":{},"timestamp":1787398329577}]
