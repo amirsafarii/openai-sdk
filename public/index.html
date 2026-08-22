@@ -1,9 +1,69 @@
 <!doctype html>
-<html><head><title>Agent Runtime</title></head><body>
-<h1>Web UI متصل به Runtime</h1>
-<div id="events"></div>
-<script>
-fetch('/events').catch(()=>{});
-document.getElementById('events').innerText = 'متصل';
-</script>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Runtime</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="rail">
+      <div class="brand">
+        <span class="dot"></span>
+        <div>
+          <strong>Agent Runtime</strong>
+          <small id="providerLabel">connecting…</small>
+        </div>
+      </div>
+      <section>
+        <h2>Sessions</h2>
+        <div id="sessionList" class="list"></div>
+      </section>
+      <section>
+        <h2>Runs</h2>
+        <div id="runList" class="list"></div>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="chat-header">
+        <div>
+          <h1 id="chatTitle">Conversation</h1>
+          <p id="runMeta">No active run</p>
+        </div>
+        <div class="actions">
+          <button id="resumeBtn">Resume</button>
+          <button id="retryBtn">Retry</button>
+          <button id="suspendBtn">Suspend</button>
+          <button id="cancelBtn">Cancel</button>
+        </div>
+      </header>
+      <div id="messages" class="messages"></div>
+      <form id="chatForm" class="composer">
+        <input id="chatInput" autocomplete="off" placeholder="Send a task to the runtime…">
+        <button type="submit">Run</button>
+      </form>
+    </main>
+
+    <aside class="inspect">
+      <section>
+        <h2>Approvals</h2>
+        <div id="approvalList" class="cards"></div>
+      </section>
+      <section>
+        <h2>Tool timeline</h2>
+        <div id="ledgerList" class="cards"></div>
+      </section>
+      <section>
+        <h2>Debugger</h2>
+        <div class="filters">
+          <input id="eventFilter" placeholder="filter events">
+        </div>
+        <div id="eventList" class="cards tall"></div>
+      </section>
+    </aside>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

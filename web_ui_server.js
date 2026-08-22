@@ -1,4 +1,8 @@
-import express from 'express';
-const app = express();
-app.use(express.static('public'));
-app.listen(3000, () => console.log('Web UI: http://0.0.0.0:3000'));
+import { startWebServer } from "./src/ui/web-server.js";
+
+const host = "0.0.0.0";
+const port = Number(process.env.PORT || 3000);
+
+const { server } = await startWebServer({ host, port });
+const address = server.address();
+console.log(`Web UI: http://${host}:${address.port}`);

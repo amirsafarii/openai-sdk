@@ -1,9 +1,2 @@
-import webSearchTool from "./web_search.js";
-
-import {jinaReaderTool} from "./fetch_engine/index.js";
-
-
-export {
-  jinaReaderTool,
-  webSearchTool
-}
+import { createBuiltinTools } from "./catalog.js";
+export { createBuiltinTools, createBuiltinTools as default };

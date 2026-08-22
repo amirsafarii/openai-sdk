@@ -1,17 +1,13 @@
-import {
-   ReentrantLockManager,
-   SessionManager,
-   FileRunStore,
-   RunTracker,
-   FileSessionStore
-} from "./index.store.js";
+import { ReentrantLockManager } from "./ReentrantLockManager.js";
+import { RunStore } from "../state/RunStore.js";
+import { SessionStore, SessionManager } from "../state/SessionStore.js";
 
 const lockManager = new ReentrantLockManager();
-const sessionStore = new FileSessionStore({
-   directory: "./data/sessions",
-   lockManager
+const sessionStore = new SessionStore({
+  directory: "./data/sessions",
+  lockManager
 });
-const runStore = new FileRunStore({ directory: "./data/runs", lockManager });
+const runStore = new RunStore({ directory: "./data/runs", lockManager });
 const sessionManager = new SessionManager({ sessionStore, lockManager });
 
-export { RunTracker,lockManager, sessionStore, runStore, sessionManager };
+export { lockManager, sessionStore, runStore, sessionManager };

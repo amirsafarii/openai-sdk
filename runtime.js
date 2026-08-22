@@ -1,2 +1,4 @@
-import { agent } from './src/provider/agent.js';
-export const runtime = { agent, emit: (e) => console.log('[EVENT]', e) };
+import { createRuntime, AgentRuntime } from "./src/runtime/AgentRuntime.js";
+
+export { createRuntime, AgentRuntime };
+export const runtime = { createRuntime, AgentRuntime };
