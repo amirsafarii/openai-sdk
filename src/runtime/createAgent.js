@@ -1,4 +1,5 @@
 import { Agent } from "@openai/agents";
+import { providerModel } from "./provider.js";
 
 export const DEFAULT_INSTRUCTIONS = `
 You are a production autonomous agent with tools for files, shell, HTTP, and memory.
@@ -18,10 +19,11 @@ export function createRuntimeAgent({
   tools = [],
   handoffs = []
 } = {}) {
+  const resolvedModel = model || providerModel();
   return new Agent({
     name,
     instructions,
-    ...(model ? { model } : {}),
+    ...(resolvedModel ? { model: resolvedModel } : {}),
     tools,
     handoffs
   });
