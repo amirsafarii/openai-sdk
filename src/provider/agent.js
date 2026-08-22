@@ -6,7 +6,7 @@ import { EventDebugger } from "../debugger/EventDebugger.js";
 import { ReentrantLockManager } from "../store/ReentrantLockManager.js";
 import { configureProvider } from "../runtime/provider.js";
 
-configureProvider();
+const provider = configureProvider();
 
 const lockManager = new ReentrantLockManager();
 const toolRuntime = new ToolRuntime({
@@ -15,5 +15,6 @@ const toolRuntime = new ToolRuntime({
 });
 
 export const agent = createRuntimeAgent({
+  model: provider.model,
   tools: createBuiltinTools(toolRuntime)
 });

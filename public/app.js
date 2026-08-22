@@ -145,7 +145,10 @@ function listen(runId) {
 
 async function refreshAll() {
   const health = await api("/api/health");
-  $("providerLabel").textContent = health.provider?.kind || "local";
+  const provider = health.provider || {};
+  $("providerLabel").textContent = provider.kind
+    ? `${provider.kind}${provider.model ? ` · ${provider.model}` : ""}`
+    : "local";
   await refreshSessions();
   await refreshRuns();
   await refreshInspect();

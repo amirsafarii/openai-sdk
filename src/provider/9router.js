@@ -1,12 +1,31 @@
 import "dotenv/config";
 
-import OpenAI from "openai";
+import {
+  configureProvider,
+  createProviderClient,
+  getProviderClient,
+  detectProvider,
+  providerBaseURL,
+  providerApiKey,
+  providerModel,
+  DEFAULT_BASE_URL,
+  DEFAULT_MODEL
+} from "../runtime/provider.js";
 
-const provider = new OpenAI({
-   apiKey: process.env.OPENROUTER_API_KEY,
-   baseURL: process.env.OPENROUTER_BASE_URL
-});
+// Shared OpenAI-compatible client bound to the 9router gateway.
+const provider = getProviderClient();
 
 export {
-  provider
-}
+  provider,
+  configureProvider,
+  createProviderClient,
+  getProviderClient,
+  detectProvider,
+  providerBaseURL,
+  providerApiKey,
+  providerModel,
+  DEFAULT_BASE_URL,
+  DEFAULT_MODEL
+};
+
+export default provider;

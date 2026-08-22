@@ -60,13 +60,15 @@ export class AgentRuntime extends EventEmitter {
     });
     this.toolPolicy = options.toolPolicy || {};
     this.extraTools = options.tools || [];
-    this.model = options.model;
     this.modelProvider = options.modelProvider;
     this.agentName = options.agentName || "Autonomous Agent";
     this.instructions = options.instructions;
     this.maxTurns = options.maxTurns ?? 12;
     this.allowPrivateNetwork = options.allowPrivateNetwork === true;
     this.provider = options.skipProviderSetup ? detectProvider() : configureProvider();
+    // Default every run to the gateway model unless a model/instance is injected.
+    this.model = options.model
+      || (options.skipProviderSetup ? undefined : this.provider.model);
     this.runner = options.runner || new Runner({
       ...(this.model ? { model: this.model } : {}),
       ...(this.modelProvider ? { modelProvider: this.modelProvider } : {}),
@@ -228,8 +230,10 @@ export class AgentRuntime extends EventEmitter {
     if (input == null || input === "") {
       throw new Error("Run input is required");
     }
-    if (!this.model && this.provider.kind === "none") {
-      throw new Error("No model configured. Set OPENAI_API_KEY or OPENROUTER_API_KEY.");
+    if (this.provider.kind === "none" && typeof this.model !== "object") {
+      throw new Error(
+        "No provider credential configured. Set OPENROUTER_API_KEY (9router gateway key)."
+      );
     }
     const record = await this.runStore.create({
       sessionId,
