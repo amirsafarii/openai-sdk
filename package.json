@@ -1,19 +1,23 @@
 {
   "name": "openai-sdk-agent",
   "version": "1.0.0",
-  "description": "",
+  "description": "Production Autonomous Agent Runtime on the official OpenAI Agents SDK",
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "runtime.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "start": "node q.js",
+    "web": "node web_ui_server.js",
+    "cli": "node q.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^8.6.0",
     "@openai/agents": "^0.17.0",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "openai": "^7.5.0",
     "undici": "^8.10.0",
     "zod": "^4.4.3"

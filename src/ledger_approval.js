@@ -1,2 +1,2 @@
-export const ledger = { records:[], add(r){this.records.push({executionId:'ex-'+Date.now(),status:'pending',...r,startedAt:Date.now()});}, getByRun(r){return this.records.filter(x=>x.runId===r)} };
-export const approval = { reqs:[], request(r){this.reqs.push({approvalId:'ap-'+Date.now(),status:'pending',...r,requestedAt:Date.now()});}, approve(id){const x=this.reqs.find(r=>r.approvalId===id);if(x){x.status='approved';x.resolvedAt=Date.now();}}, reject(id){const x=this.reqs.find(r=>r.approvalId===id);if(x){x.status='rejected';x.resolvedAt=Date.now();}} };
+export { ExecutionLedger } from "./ledger/ExecutionLedger.js";
+export { ApprovalManager } from "./approval/ApprovalManager.js";

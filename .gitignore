@@ -1,5 +1,6 @@
 node_modules/
+data/
+.env
 x.js
 server.js
-index.js
-.env
+*.tmp
